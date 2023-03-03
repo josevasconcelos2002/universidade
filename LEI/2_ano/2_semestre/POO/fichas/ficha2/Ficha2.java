@@ -1,25 +1,11 @@
 import java.util.Arrays;
 import java.util.Scanner;
 import java.lang.String;
-import java.lang.reflect.Array;
+import java.time.LocalDate;
 
 public class Ficha2{
     public static void main(String[] args) {
-        int arr[] = new int[5];
-        int a,b;
-        Exercicio1 ex1 = new Exercicio1();
-        Scanner input = new Scanner(System.in);
-        System.out.println("Introduza os elementos do array: ");
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = Integer.parseInt(input.nextLine());
-        }
-        //System.out.println("O menor elemento do array introduzido e: " + String.valueOf(ex1.minArray(arr)));
-        System.out.println("Introduza os indices:  ");
-        a = Integer.parseInt(input.nextLine());
-        b = Integer.parseInt(input.nextLine());
-        input.close();
-        System.out.println("Array original:  " + Arrays.toString(arr));
-        System.out.println("Novo array:  " + Arrays.toString(ex1.newArray(arr, a, b)));
+
     }
 }
 
@@ -40,6 +26,20 @@ class Exercicio1{
             j++;
         }
         return newArr;
-        
     }
+    public int[] elementosIguais(int arr1[], int arr2[]){
+        int[] resultado = new int[Math.max(arr1.length,arr2.length)];
+        for(int i = 0; i<arr1.length ; i++){
+            for(int j = 0; j<arr2.length ; j++){
+                if(arr1[i] == arr2[j]){
+                    resultado[i] = arr1[i];
+                }
+            }
+        }
+        return resultado;
+    }
+}
+
+class Exercicio2{
+
 }
