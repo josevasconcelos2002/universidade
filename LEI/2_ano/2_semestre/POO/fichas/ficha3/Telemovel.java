@@ -20,7 +20,7 @@ public class Telemovel {
         this.dimensaoM = 0;
         this.espacoFotosAplicacoes = 0;
         this.espacoFotos = 0;
-        this.espacoAplicacoes = 0;
+        this.espacoAplicacoes = 1000;
         this.totalOcupado = 0;
         this.fotosGuardadas = 0;
         this.aplicacoesInstaladas = 0;
@@ -173,19 +173,13 @@ public class Telemovel {
         }
     }
 
-    public String toString(String[] nomeA){
-        String s = new String();
-        //s = nomeA[0];
-        for(int i = 0; i<this.getAplicacoesI() ; i++){
-            s = nomeA[i];
-            return s;
-        }
-        //return s;
-    }
+    
     public static void main(String args[]){
         Telemovel tele1 = new Telemovel();
         String[] nomeA = {"Facebook","Instagram"};
         tele1.setNomeA(nomeA);
-        System.out.println("Aplicações iniciais: " + tele1.toString(tele1.getNomeA()));
+        System.out.println("Aplicações iniciais: " + Arrays.toString(nomeA));
+        tele1.instalaApp("Whatsapp", 10);
+        System.out.println("Aplicações: " + Arrays.toString(tele1.getNomeA()));
     }
 }
