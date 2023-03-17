@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class Telemovel {
     private String marca;
     private String modelo;
@@ -160,9 +162,30 @@ public class Telemovel {
 
     public void instalaApp(String nome, int tamanho){
         if(this.existeEspaco(tamanho)){
-            //como adicionar a string ao array?
+            //System.arraycopy(this.getNomeA(),this.getAplicacoesI(),this.getNomeA(), this.getAplicacoesI()+1, 1);
+            //this.getNomeA();
+            int nova_capacidade = (int)(this.getNomeA().length +1);
+            String[] array = Arrays.copyOf(this.getNomeA(),nova_capacidade);
+            array[nova_capacidade] = nome;
+            this.setNomeA(array);
             this.setTotalO(this.getTotalO()+tamanho);
             this.setAplicacoesI(this.getAplicacoesI()+1);
         }
+    }
+
+    public String toString(String[] nomeA){
+        String s = new String();
+        //s = nomeA[0];
+        for(int i = 0; i<this.getAplicacoesI() ; i++){
+            s = nomeA[i];
+            return s;
+        }
+        //return s;
+    }
+    public static void main(String args[]){
+        Telemovel tele1 = new Telemovel();
+        String[] nomeA = {"Facebook","Instagram"};
+        tele1.setNomeA(nomeA);
+        System.out.println("Aplicações iniciais: " + tele1.toString(tele1.getNomeA()));
     }
 }
