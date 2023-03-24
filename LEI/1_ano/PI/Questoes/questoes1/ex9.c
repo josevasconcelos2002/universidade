@@ -2,14 +2,21 @@
 #include <string.h>
 #include <stdlib.h>
 
+int ascii(char s[]){
+    int resultado = 0;
+    int i = 0;
+    for(i; s[i] != '\0' ; i++){
+        int ascii = (int)s[i];
+        resultado += ascii;
+    }
+    return resultado;
+}
+
 int strcmp1 (char s1[], char s2[]){
     int resultado = 0;
-    if(strlen(s1) != strlen(s2)) resultado = strlen(s1) - strlen(s2);
-    else {
-        for(int i = 0; s1[i] != '\0' && s2[i] != '\0'; i++){ 
-            if(s1[i] != s2[i]) resultado += atoi(&s1[i]) - atoi(&s2[i]);
-        }
-    }
+    int ascii_1 = ascii(s1);
+    int ascii_2 = ascii(s2);
+    resultado = ascii_1 - ascii_2;
     return resultado;
 }
 
