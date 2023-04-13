@@ -6,56 +6,57 @@
 bool consoante(char c){
     bool resultado = false;
     int ascii = (int)c;
-    //printf("ASCII de '%c': %d\n",c,ascii);
-    if((ascii > 65 && ascii < 69) || (ascii > 69 && ascii < 73) || (ascii > 73 && ascii < 79) || (ascii > 79 && ascii < 85) || (ascii > 85 && ascii <= 90) || ascii == 0) resultado = true;
-    //printf("%c e consoante? %d\n",c,resultado);
+    if((ascii > 65 && ascii < 69) || (ascii > 69 && ascii < 73) || (ascii > 73 && ascii < 79) || (ascii > 79 && ascii < 85) || (ascii > 85 && ascii <= 90)) resultado = true;
     return resultado;
 }
+
 
 bool vogal(char c){
     bool resultado = false;
     int ascii = (int)c;
-    //printf("ASCII de '%c': %d\n",c,ascii);
-    if(ascii == 65 || ascii == 69 || ascii == 73 || ascii == 79 || ascii == 85 || ascii == 0) resultado = true;
-    //printf("%c e vogal? %d\n",c,resultado);
+    if(ascii == 65 || ascii == 69 || ascii == 73 || ascii == 79 || ascii == 85 || ascii == 89) resultado = true;
     return resultado;
 }
 
 void cancoes(){
     int n = 0;
-    int scan = scanf("%d",&n);
-    int resultado[n];
-    char linha[1000];
-    for(int k = 0; k<n ; k++) resultado[k] = 0;
-    if(scan){
-        for(int i = 0; i<=n ; i++){
-            char *linha1 = fgets(linha,1000,stdin);
-            char *linha2 = malloc(sizeof(char) *1000);
-            //linha2 = NULL;
-                int size = strlen(linha1);
-                //printf("Size: %d\n",size);
-                int h = 0;
-                for(int j = 0; j<size ; j++){
-                    if(linha1[j] != ' '){ 
-                        linha2[h] = linha1[j];
-                        h++;
+    //int scan = scanf("%d",&n);
+    char n1[100];
+    if(fgets(n1,sizeof(n1),stdin)!=NULL){
+        n = atoi(n1);
+        int resultado[n];
+        //char linha[1000];
+        for(int k = 0; k<n ; k++) resultado[k] = 0;
+            for(int l = 0; l<n ;l++){
+                char linha1[1000];
+                if (fgets(linha1, sizeof(linha1), stdin) != NULL) {
+                    int len = strlen(linha1);
+                    for(int i = 0; i<len ;i++){
+                        int cond1=1;
+                        while(linha1[i] != ' ' && linha1[i] != '\n' && linha1[i] != '\0'){
+                            int cond = 1;
+                            if(i>0 && linha1[i-1]!= ' '){
+                                if((consoante(linha1[i]) && vogal(linha1[i-1])) || (vogal(linha1[i]) && consoante(linha1[i-1]))){
+                                    //printf("Valor logico 1: %c && %c\n",linha1[i-1],linha1[i]);
+                                    cond = (1 && cond1);
+                                    //printf("\nCond: %d\n",cond);
+                                    cond1 = cond;
+                                }
+                                else{
+                                    //printf("Valor logico 0: %c && %c\n",linha1[i-1],linha1[i]);
+                                    cond = 0 && cond1;
+                                    //printf("\nCond: %d\n",cond);
+                                    cond1 = cond;
+                                }
+                            }
+                            i++;
+                        }
+                        resultado[l] += cond1; 
                     }
-                    //printf("%c\n",linha2[j]);
                 }
-                int size1 = strlen(linha2);
-                //printf("String sem espacos: %s\n",linha2);
-                //printf("Strlen: %d\n",size1);
-                for(int q = 0; q<size1-3 ; q++){
-                    printf("%c\n",linha2[q]);
-                    printf("%c\n",linha2[q+1]);
-                    printf("%c\n",linha2[q+2]);
-                    if(vogal(linha2[q]) && consoante(linha2[q+1] && vogal(linha2[q+2]))) resultado[i]++;
-                }
-                //printf("Strlen: %ld\n",strlen(linha));
         }
+            for(int p = 0; p<n ; p++) printf("%d\n",resultado[p]);
     }
-    for(int p = 0; p<n ; p++) printf("%d\n",resultado[p]);
-    //printf("\n");
 }
 
 int main(){
