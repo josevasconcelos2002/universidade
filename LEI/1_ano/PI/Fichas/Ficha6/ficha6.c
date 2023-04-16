@@ -96,3 +96,65 @@ int Sfront (SQueue q, int *x){
     }
     return r;
 }
+
+// exercicio 3
+
+typedef struct dinStack {
+    int size; // guarda o tamanho do array values
+    int sp;
+    int *values;
+} *DStack;
+
+void DinitStack (DStack s){
+    if(s != NULL){
+        s->sp = 0;
+        s->size = 1;
+    }
+}
+
+int SisEmpty (SStack s){
+    bool r = false;
+    if(s == NULL || s->size = 0) r = true;
+    return (int)r;
+}
+
+int Spush(SStack s, int x){
+    int r = 1;
+    if(s->sp < Max-1){
+        s->sp++;
+        s->values[s->sp] = x;
+        r = 0;
+    }
+    return r;
+}
+
+int Spop (SStack s, int *x){
+    int r = 1;
+    if(!SisEmpty(s) == 0){
+        int N = s->values[s->sp];
+        s->sp--;
+        *x = N;
+        r = 1;
+    }
+    return r;
+}
+
+int Stop (SStack s, int *x){
+    int r = 1;
+    if(!SisEmpty(s)){
+        int N = s->values[s->sp];
+        *x = N;
+        r = 0;
+    }
+    return r;
+}
+
+
+// .2)
+
+typedef struct dinQueue {
+    int size; // guarda o tamanho do array values
+    int front;
+    int length;
+    int *values;
+} *DQueue;
