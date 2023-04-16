@@ -1,7 +1,7 @@
 #define Max 100
 #include <stdio.h>
 #include <stdbool.h>
-
+#include <stdlib.h>
 struct staticStack {
     int sp;
     int values [Max];
@@ -112,25 +112,32 @@ void DinitStack (DStack s){
     }
 }
 
-int SisEmpty (SStack s){
+int DisEmpty (DStack s){
     bool r = false;
     if(s == NULL || s->size = 0) r = true;
     return (int)r;
 }
 
-int Spush(SStack s, int x){
+int Dpush(DStack s, int x){
     int r = 1;
-    if(s->sp < Max-1){
+    if(s->sp < s->size-1){
         s->sp++;
         s->values[s->sp] = x;
         r = 0;
     }
+    else if(s->sp == s->size-1){
+        s->size = 2*s->size;
+        s->values = (int *)realloc(s->values,2*sizeof(s->values));
+        s->sp++;
+        s->values[s->sp] = x;
+        r = 0; 
+    }
     return r;
 }
 
-int Spop (SStack s, int *x){
+int Dpop (DStack s, int *x){
     int r = 1;
-    if(!SisEmpty(s) == 0){
+    if(!DisEmpty(s) == 0){
         int N = s->values[s->sp];
         s->sp--;
         *x = N;
