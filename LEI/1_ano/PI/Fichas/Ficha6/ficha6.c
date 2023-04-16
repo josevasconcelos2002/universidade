@@ -7,17 +7,26 @@ struct staticStack {
     int values [Max];
 } STACK, *SStack;
 
-void SinitStack (STACK *s){
+
+struct staticQueue {
+    int front;
+    int length;
+    int values [Max];
+} QUEUE, *SQueue;
+
+// exercicio 1
+
+void SinitStack (SStack s){
     if(s != NULL) s->sp = 0;
 }
 
-int SisEmpty (STACK *s){
+int SisEmpty (SStack s){
     bool r = false;
     if(s == NULL) r = true;
     return (int)r;
 }
 
-int Spush(STACK *s, int x){
+int Spush(SStack s, int x){
     int r = 1;
     if(s->sp < Max-1){
         s->sp++;
@@ -27,7 +36,7 @@ int Spush(STACK *s, int x){
     return r;
 }
 
-int Spop (STACK *s, int *x){
+int Spop (SStack s, int *x){
     int r = 1;
     if(!SisEmpty(s) == 0){
         int N = s->values[s->sp];
@@ -38,11 +47,51 @@ int Spop (STACK *s, int *x){
     return r;
 }
 
-int Stop (STACK *s, int *x){
+int Stop (SStack s, int *x){
     int r = 1;
     if(!SisEmpty(s)){
         int N = s->values[s->sp];
         *x = N;
+        r = 0;
+    }
+    return r;
+}
+
+// exercicio 2
+
+void SinitQueue(SQueue q){
+    if(q!=NULL) q->length = 0;
+}
+
+int SisEmptyQ (SQueue q){
+    return q->length == 0;
+}
+
+int Senqueue (SQueue q, int x){
+    int r = 1;
+    if(q->length < Max){
+        q->length++;
+        q->values[q->length] = x;
+        r = 0;
+    }
+    return r;
+}
+
+int Sdequeue(SQueue q, int *x){
+    int r = 1;
+    if(!SisEmptyQ(q)){
+        *x = q->values[q->front];
+        q->length--;
+        q->front++;
+        r = 0;
+    }
+    return r;
+}
+
+int Sfront (SQueue q, int *x){
+    int r = 1;
+    if(!SisEmptyQ(q)){
+        *x = q->values[q->front];
         r = 0;
     }
     return r;
