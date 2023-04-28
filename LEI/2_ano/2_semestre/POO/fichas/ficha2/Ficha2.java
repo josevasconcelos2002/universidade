@@ -1,11 +1,14 @@
 import java.util.Arrays;
-import java.util.Scanner;
+//import java.util.Scanner;
 import java.lang.String;
 import java.time.LocalDate;
 
 public class Ficha2{
     public static void main(String[] args) {
-
+        Exercicio2 ex2 = new Exercicio2();
+        System.out.println(Arrays.toString(ex2.getDatas()));
+        ex2.insereData(LocalDate.now());
+        System.out.println(Arrays.toString(ex2.getDatas()));
     }
 }
 
@@ -41,5 +44,39 @@ class Exercicio1{
 }
 
 class Exercicio2{
+    private LocalDate[] arr;
+
+    public Exercicio2(){
+        this.arr = new LocalDate[20];
+        for(int i = 0; i<20 ; i++){
+            arr[i] = null;
+        }
+    }
+
+    public LocalDate[] getDatas(){
+        return this.arr;
+    }
+
+    public void setDatas(LocalDate[] arr){
+        this.arr = arr;
+    }
+
+    public void insereData(LocalDate data){
+        int i = 0;
+        while(arr[i] != null){
+            i++;
+        }
+        arr[i] = data;
+    }
+    /*
+    public LocalDate dataMaisProxima(LocalDate data){
+        LocalDate resultado;
+        int maisProximo = 0;
+        for(int i = 0; arr[i] != null; i++){
+            if(Math.abs(data.toMill))
+        }
+        return resultado;
+    }
+    */
 
 }

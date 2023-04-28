@@ -1,5 +1,6 @@
 import java.util.Arrays;
 
+
 public class Telemovel {
     private String marca;
     private String modelo;
@@ -24,6 +25,7 @@ public class Telemovel {
         this.totalOcupado = 0;
         this.fotosGuardadas = 0;
         this.aplicacoesInstaladas = 0;
+        this.nomeAplicacoes = new String[20];
     }
 
     public Telemovel(String marca,String modelo,int dispX,int dispY,int dimensaoM,int espacoFA,int espacoF,int espacoA,int totalO,int fotosG,int aplI,String[] nomeA){
@@ -152,7 +154,7 @@ public class Telemovel {
         return this.nomeAplicacoes;
     }
 
-    public boolean existeEspaco(int numeroBytes){
+    private boolean existeEspaco(int numeroBytes){
         boolean resultado = false;
         if(this.espacoFotosAplicacoes - this.totalOcupado >= numeroBytes){
             resultado = true;
@@ -160,10 +162,13 @@ public class Telemovel {
         return resultado;
     }
 
+    private boolean estaCheio(this.getAplicacoesI()){
+        boolean resultado = false;
+        return resultado;
+    }
+
     public void instalaApp(String nome, int tamanho){
         if(this.existeEspaco(tamanho)){
-            //System.arraycopy(this.getNomeA(),this.getAplicacoesI(),this.getNomeA(), this.getAplicacoesI()+1, 1);
-            //this.getNomeA();
             int nova_capacidade = (int)(this.getNomeA().length +1);
             String[] array = Arrays.copyOf(this.getNomeA(),nova_capacidade);
             array[nova_capacidade] = nome;
@@ -173,13 +178,9 @@ public class Telemovel {
         }
     }
 
-    
-    public static void main(String args[]){
-        Telemovel tele1 = new Telemovel();
-        String[] nomeA = {"Facebook","Instagram"};
-        tele1.setNomeA(nomeA);
-        System.out.println("Aplicações iniciais: " + Arrays.toString(nomeA));
-        tele1.instalaApp("Whatsapp", 10);
-        System.out.println("Aplicações: " + Arrays.toString(tele1.getNomeA()));
+    public static void main(String[] args) {
+        Telemovel tlm = new Telemovel();
+        tlm.instalaApp("Facebook",100);
+        System.out.println(Arrays.toString(tlm.getNomeA()));
     }
 }
