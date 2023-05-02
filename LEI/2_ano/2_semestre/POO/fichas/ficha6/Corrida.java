@@ -1,19 +1,23 @@
 package ficha6;
 
-public class Corrida extends Atividade {
+//import ficha6.FazMetros;
+
+public class Corrida extends Atividade implements FazMetros{
     private double distancia;
-    // altimetria (?)
+    private double altimetria; //?
     private String percurso;
 
     public Corrida(){
         super();
         this.distancia = 0.0;
         this.percurso = " ";
+        this.altimetria = 0.0;
     }
 
-    public Corrida(double distancia, String percurso){
+    public Corrida(double distancia, double altimetria, String percurso){
         super();
         this.distancia = distancia;
+        this.altimetria = altimetria;
         this.percurso = percurso;
     }
 
@@ -23,6 +27,14 @@ public class Corrida extends Atividade {
 
     void setDistancia(double dist){
         this.distancia = dist;
+    }
+
+    double getAltimetria(){
+        return this.altimetria;
+    }
+
+    void setAltimetria(double altimetria){
+        this.altimetria = altimetria;
     }
 
     String getPercurso(){
@@ -41,5 +53,10 @@ public class Corrida extends Atividade {
         //throw new UnsupportedOperationException("Unimplemented method 'calculaCalorias'");
     }
 
-    
+    @Override
+    public double calculaPontos(){
+        double resultado = 0.0;
+        resultado = this.getDistancia() * getPontosPorMetro();
+        return resultado;
+    }
 }

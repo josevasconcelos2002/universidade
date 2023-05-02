@@ -55,9 +55,9 @@ public abstract class Atividade {
         return this.duraçao;
     }
 
-    public abstract double calculaCalorias(double peso, int idade);
+    public abstract double calculaCalorias();
 
-    public abstract Object clone(Object o);
+    public abstract Object clone();
 
     @Override
     public boolean equals(Object o){
