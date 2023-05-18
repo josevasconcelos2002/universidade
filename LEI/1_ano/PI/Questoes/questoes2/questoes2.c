@@ -73,6 +73,32 @@ void insertOrd (LInt l, int x){
     }
 }
 
+// 6
+int removeOneOrd(LInt *l, int x) {
+    int r = 1;
+    LInt aux = *l;
+    LInt ant = NULL;
+    
+    while (aux != NULL && aux->valor < x) {
+        ant = aux;
+        aux = aux->prox;
+    }
+    
+    if (aux != NULL && aux->valor == x) {
+        if (ant != NULL) {
+            ant->prox = aux->prox;
+        } else {
+            *l = aux->prox;
+        }
+        free(aux);
+        r = 0;
+    }
+    
+    return r;
+}
+
+
+
 // 7
 
 
@@ -104,6 +130,25 @@ int listToArray (LInt l, int v[], int N){
     return resultado;
 }
 
+
+// 26
+LInt rotateL(LInt l) {
+    if (l == NULL || l->prox == NULL) {
+        // Lista vazia ou com apenas um elemento, retorna a lista original
+        return l;
+    }
+    LInt aux = l;
+    while (aux->prox != NULL) {
+        aux = aux->prox;
+    }
+    aux->prox = l;
+    l = l->prox;
+    aux->prox->prox = NULL;
+    return l;
+}
+
+
+
 // 28
 int alturaMax(int alturaEsq, int alturaDir){
     if(alturaEsq>alturaDir) return alturaEsq;
@@ -117,4 +162,3 @@ int altura (ABin a){
     }
 	return resultado;
 }
-
